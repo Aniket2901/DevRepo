@@ -1,0 +1,24 @@
+{
+  "name": "devtinder",
+  "version": "1.0.0",
+  "description": "Backend code",
+  "homepage": "https://github.com/Aniket2901/DevRepo#readme",
+  "bugs": {
+    "url": "https://github.com/Aniket2901/DevRepo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aniket2901/DevRepo.git"
+  },
+  "license": "ISC",
+  "author": "Aniket Dhamange",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start":"node src/app.js",
+    "dev":"nodemon src/app.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
