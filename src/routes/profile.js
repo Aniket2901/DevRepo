@@ -6,19 +6,19 @@ const User=require("../models/user");
 const {validateUpdates}=require("../utils/validation");
 
 
-profileRouter.get("/users",jwtUserAuth, async(req,res)=>{
+profileRouter.get("/profile",jwtUserAuth, async(req,res)=>{
     try{
         if(!req.user){
             return res.status(401).json({message:"Unauthorized"});
         }
-        const users=await User.find();  
-        res.status(200).json(users);
+        const user=await User.findOne({_id:req.user._id});  
+        res.status(200).json(user);
     }catch(err){
         res.status(500).json({message:"Failed to fetch users",error:err});
     }
 });
 
-profileRouter.patch("/user/update",jwtUserAuth, async (req,res)=>{
+profileRouter.patch("/profile/update",jwtUserAuth, async (req,res)=>{
     try{
         if(!req.user){
             return res.status(401).json({message:"Unauthorized"});
