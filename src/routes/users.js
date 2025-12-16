@@ -68,8 +68,4 @@ userRouter.get("/user/feed",jwtUserAuth, async(req,res)=>{
     }
 });
 
-
-
-
-
 module.exports = userRouter;
