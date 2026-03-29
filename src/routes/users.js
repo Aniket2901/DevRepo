@@ -7,7 +7,7 @@ const User=require("../models/user");
 
 const ConnectionRequestModel=require("../models/connectionRequest");
 
-userRouter.get("/user/connnections",jwtUserAuth, async(req,res)=>{
+userRouter.get("/connnections",jwtUserAuth, async(req,res)=>{
     try{
         const loggedInUser=req.user;
         const connectionRequest= await ConnectionRequestModel.find({
@@ -30,7 +30,7 @@ userRouter.get("/user/connnections",jwtUserAuth, async(req,res)=>{
     }
 });
 
-userRouter.get("/user/requests",jwtUserAuth, async(req,res)=>{
+userRouter.get("/requests",jwtUserAuth, async(req,res)=>{
     try{
         const loggedInUser=req.user;        
         const connectionRequests= await ConnectionRequestModel.find({
@@ -43,7 +43,7 @@ userRouter.get("/user/requests",jwtUserAuth, async(req,res)=>{
     }               
 });
 
-userRouter.get("/user/feed",jwtUserAuth, async(req,res)=>{
+userRouter.get("/feed",jwtUserAuth, async(req,res)=>{
     try{
         const loggedInUser=req.user;        
 

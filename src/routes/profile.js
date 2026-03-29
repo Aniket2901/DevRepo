@@ -6,7 +6,7 @@ const User=require("../models/user");
 const {validateUpdates}=require("../utils/validation");
 
 
-profileRouter.get("/profile",jwtUserAuth, async(req,res)=>{
+profileRouter.get("/profile/view",jwtUserAuth, async(req,res)=>{
     try{
         if(!req.user){
             return res.status(401).json({message:"Unauthorized"});
