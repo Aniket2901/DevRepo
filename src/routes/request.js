@@ -46,4 +46,30 @@ requestRouter.post("/request/send/:status/:reciversId",jwtUserAuth, async(req,re
     }
 });
 
+requestRouter.post("/request/respond/:status/:requesterId",jwtUserAuth, async(req,res)=>{
+    try{  
+        if(!req.user){
+            return res.status(401).json({message:"Unauthorized"});
+        }
+        const loggedInUser=req.user;
+        const {status, requesterId}=req.params;
+        const allowedStatuses=['accepted','rejected'];
+        if(!allowedStatuses.includes(status)){
+            return res.status(400).json({message:"Invalid status value"});
+        }
+        const connectionRequest=await ConnectionRequestModel.findOne({_id:requesterId,reciversId:loggedInUser._id,status:"intersted"});
+        if(!connectionRequest){
+            return res.status(404).json({message:"No pending request found from this user"});
+        }
+        connectionRequest.status=status;
+        await connectionRequest.save();
+        res.status(200).json({message:`Request ${status} successfully`});
+    }catch(err){
+        res.status(500).json({message:"Failed to respond to request",error:err});
+    }
+});
+
+
+
+
 module.exports=requestRouter;
